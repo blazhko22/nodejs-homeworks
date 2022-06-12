@@ -1,6 +1,6 @@
 const authService = require('../services/auth.service');
 
-const regesterUser = async (req, res, next) => {
+const registerUser = async (req, res, next) => {
     try {
         const user = await authService.regesterUser(req.body);
         res.status(201).json({
@@ -32,5 +32,5 @@ const logoutUser = async (req, res, next) => {
 }
 
 module.exports = {
-    regesterUser, loginUser, logoutUser
+    registerUser, loginUser, logoutUser
 }

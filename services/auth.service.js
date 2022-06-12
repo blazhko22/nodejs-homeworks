@@ -30,7 +30,7 @@ const loginUser = async ({email, password}) => {
     }
     const payload = {
         id: user._id,
-        role: user.role,
+        subscription: user.subscription,
     };
     const token = jwt.sign(payload, SECRET_KEY, {expiresIn: '1h'});
     await User.findByIdAndUpdate(user._id, {token})

@@ -1,8 +1,8 @@
 const express = require('express');
+const router = express.Router();
 const {registerUser, loginUser, logoutUser} = require('../../controllers/auth');
 const {schemaRegister, schemaLogin} = require('../../models/user');
 const {validateError} = require('../../middlewares/validateError');
-const router = express.Router();
 const {auth} = require('../../middlewares/auth');
 
 router.post('/users/registration', validateError(schemaRegister), registerUser);
