@@ -43,17 +43,30 @@ const logoutUser = async (id) => {
     await User.findByIdAndUpdate(id, {token: null})
 }
 
-const authenticateUser = async (token) => {
-    try {
-        const payload = jwt.verify(token, SECRET_KEY);
-        const {id} = payload;
-        const user = await User.findById(id);
+// const authenticateUser = async (token) => {
+//     try {
+//         const payload = jwt.verify(token, SECRET_KEY);
+//         const {id} = payload;
+//         const user = await User.findById(id);
 
-        return user.token !== token ? null : user;
-    } catch (e) {
-        return null;
-    }
-}
+//         return user.token !== token ? null : user;
+//     } catch (e) {
+//         return null;
+//     }
+// }
+const authenticateUser = async (req, res) => {
+    const { email, subscription } = req.user;
+    res.json({
+      status: "success",
+      code: 200,
+      data: {
+        user: {
+          email,
+          subscription,
+        },
+      },
+    });
+  };
 
 module.exports = {
     registerUser, loginUser, authenticateUser, logoutUser,

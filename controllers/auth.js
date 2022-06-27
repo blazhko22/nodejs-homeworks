@@ -6,7 +6,8 @@ const registerUser = async (req, res, next) => {
         res.status(201).json({
             email: user.email,
             subscription: user.subscription,
-            id: user._id
+            id: user._id,
+            avatarURL: user.avatarURL,
         });
     } catch (e) {
         next(e);
