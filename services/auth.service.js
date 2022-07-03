@@ -7,6 +7,11 @@ const jwt = require('jsonwebtoken');
 
 const registerUser = async (userPass) => {
     const result = await User.findOne({email: userPass.email});
+
+    if(result && !result.verify) {
+        throw addError(401, 'Please confirm your email.')
+     }
+
     if(result) {
         throw addError(409, "Email in use")
     }
